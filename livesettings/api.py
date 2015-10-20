@@ -40,3 +40,5 @@ class LiveSettings(object):
             except Exception:
                 log.error('invalid livesetting value', exc_info=True)
         return value
+
+live_settings = LiveSettings()
