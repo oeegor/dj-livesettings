@@ -58,5 +58,6 @@ setup(
     install_requires=[
         'django-memoize>=1.2.0',
         'Django>=1.7',
+        'PyYAML>=3.11',
     ],
 )
