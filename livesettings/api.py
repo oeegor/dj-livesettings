@@ -36,7 +36,11 @@ class LiveSettings(object):
         live_setting = result.get(key)
         if live_setting:
             try:
-                value = parse_value(live_setting.value, live_setting.key_type)
+                value = parse_value(
+                    live_setting.value,
+                    live_setting.key_type,
+                    live_setting.key,
+                )
             except Exception:
                 log.error('invalid livesetting value', exc_info=True)
         return value

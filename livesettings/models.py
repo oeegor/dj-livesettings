@@ -9,6 +9,7 @@ class LiveSetting(models.Model):
         ('float', 'float'),
         ('json', 'json'),
         ('yaml', 'yaml'),
+        ('schematics', 'schematics'),
     )
 
     key = models.CharField(max_length=128, primary_key=True)
