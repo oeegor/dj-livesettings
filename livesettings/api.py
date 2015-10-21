@@ -5,6 +5,7 @@ from . import __version__
 from .forms import parse_value
 from .models import LiveSetting
 from django.conf import settings
+from django.core.cache import caches
 from memoize import memoize
 
 
@@ -16,7 +17,10 @@ class LiveSettings(object):
     def __getattr__(self, key):
         return self._get_value(key)
 
-    @memoize(timeout=settings.LIVE_SETTINGS_CACHE_TIME)
+    @memoize(
+        timeout=getattr(settings, LIVE_SETTINGS_CACHE_TIME, 60),
+        cache=caches[getattr(settings, 'LIVE_SETTINGS_CACHE_ALIAS', 'default')],
+    )
     def _get_all_from_db(self, _version=__version__):
         return \
             {
